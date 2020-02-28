@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app-1">
+        <p>{{ foo }}</p>
+        <!-- cela ne va plus mettre à jour `foo` ! -->
+        <button v-on:click="foo = 'baz'">Change le texte (ou pas ?)</button>
+    </div>
+
+    <script>
+        // OBJECT.FREEZE EMPECHE LES DONNEES EXISTANTES D'ETRE CHANGEES
+
+        var obj = {
+            foo: 'bar'
+        }
+
+        Object.freeze(obj)
+
+        new Vue({
+            el: '#app-1',
+            data: obj
+        })
+    </script>
+
+</body>
+
+</html>
